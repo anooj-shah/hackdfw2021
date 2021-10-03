@@ -4,35 +4,25 @@ import Card from '@material-tailwind/react/Card';
 import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 
-export default function ChartLine() {
+
+export default function ChartLine(props) {
     useEffect(() => {
+        if (window.myLine) {
+            window.myLine.destroy();
+        }
+
         var config = {
             type: 'line',
             data: {
-                labels: [
-                    'January',
-                    'February',
-                    'March',
-                    'April',
-                    'May',
-                    'June',
-                    'July',
-                ],
+                labels: props.documents && props.documents.map((d) => new Date(d.date.toDate()).toLocaleDateString('en-us')).reverse(),
                 datasets: [
                     {
-                        label: new Date().getFullYear(),
+                        label: 'Past Week',
                         backgroundColor: '#03a9f4',
                         borderColor: '#03a9f4',
-                        data: [65, 78, 66, 44, 56, 67, 75],
+                        data: props.documents && props.documents.map((d) => d.num_words_read).reverse(),
                         fill: false,
-                    },
-                    {
-                        label: new Date().getFullYear() - 1,
-                        fill: false,
-                        backgroundColor: '#ff9800',
-                        borderColor: '#ff9800',
-                        data: [40, 68, 86, 74, 56, 60, 87],
-                    },
+                    }
                 ],
             },
             options: {
@@ -108,7 +98,7 @@ export default function ChartLine() {
         };
         var ctx = document.getElementById('line-chart').getContext('2d');
         window.myLine = new Chart(ctx, config);
-    }, []);
+    }, [props.documents]);
 
     return (
         <Card>

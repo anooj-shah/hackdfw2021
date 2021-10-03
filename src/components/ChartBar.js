@@ -4,35 +4,31 @@ import Card from '@material-tailwind/react/Card';
 import CardHeader from '@material-tailwind/react/CardHeader';
 import CardBody from '@material-tailwind/react/CardBody';
 
-export default function ChartBar() {
+export default function ChartBar(props) {
     useEffect(() => {
+        if (window.myBar) {
+            window.myBar.destroy();
+        }
+
         let config = {
             type: 'bar',
             data: {
-                labels: [
-                    'January',
-                    'February',
-                    'March',
-                    'April',
-                    'May',
-                    'June',
-                    'July',
-                ],
+                labels: props.documents && props.documents.map((d) => new Date(d.date.toDate()).toLocaleDateString('en-us')).reverse(),
                 datasets: [
                     {
-                        label: new Date().getFullYear(),
+                        label: 'Correct',
                         backgroundColor: '#03a9f4',
                         borderColor: '#03a9f4',
-                        data: [30, 78, 56, 34, 100, 45, 13],
+                        data: props.documents && props.documents.map((d) => d.words_correct).reverse(),
                         fill: false,
                         barThickness: 8,
                     },
                     {
-                        label: new Date().getFullYear() - 1,
+                        label: 'Wrong',
                         fill: false,
                         backgroundColor: '#f44336',
                         borderColor: '#f44336',
-                        data: [27, 68, 86, 74, 10, 4, 87],
+                        data: props.documents && props.documents.map((d) => d.words_wrong).reverse(),
                         barThickness: 8,
                     },
                 ],
@@ -65,7 +61,7 @@ export default function ChartBar() {
                             display: false,
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Month',
+                                labelString: 'Date',
                             },
                             gridLines: {
                                 borderDash: [2],
@@ -100,7 +96,8 @@ export default function ChartBar() {
         };
         let ctx = document.getElementById('bar-chart').getContext('2d');
         window.myBar = new Chart(ctx, config);
-    }, []);
+        
+    }, [props.documents]);
     return (
         <Card>
             <CardHeader color="pink" contentPosition="left">

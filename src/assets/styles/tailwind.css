@@ -2345,11 +2345,11 @@ video {
 	.xl\:col-start-4{
 		grid-column-start: 4;
 	}
-	.xl\:col-end-4{
-		grid-column-end: 4;
-	}
 	.xl\:col-end-6{
 		grid-column-end: 6;
+	}
+	.xl\:col-end-4{
+		grid-column-end: 4;
 	}
 	.xl\:grid-cols-4{
 		grid-template-columns: repeat(4, minmax(0, 1fr));
