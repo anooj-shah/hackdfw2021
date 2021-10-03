@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Sidebar from 'components/Sidebar';
+import Dashboard from 'pages/Dashboard';
+
+// Tailwind CSS Style Sheet
+import 'assets/styles/tailwind.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Sidebar />
+            <div className="md:ml-64">
+                <Switch>
+                    <Route exact path="/" component={Dashboard} />
+                    <Redirect from="*" to="/" />
+                </Switch>
+            </div>
+        </>
+    );
 }
 
 export default App;
