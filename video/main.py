@@ -1,9 +1,18 @@
 import cv2
 from matplotlib import pyplot as plt
+from rekognition import Rekognizer
+try:
+    from PIL import Image
+except ImportError:
+    import Image
+import numpy
 
-video_capture = cv2.VideoCapture(0)
+video_capture = cv2.VideoCapture(1)                             
+rekognizer = Rekognizer()
 
-def get_frames(num_frames=10):
+# run rekognizer.detect_words('photo/path/photo.jpg')
+
+def get_frames(num_frames=1):
   frames = []
 
   for i in range (num_frames):
@@ -19,9 +28,16 @@ def get_frames(num_frames=10):
   return frames
 
 def iterate_frames(frames):
-  for frame in frames[0:]:
-    plt.imshow(frame)
-    plt.show()
-  
-frames = get_frames(10)
+  rekognizer.get_speed_from_firestore()
+  for frame in frames:
+    cv2.imwrite('video/images/frame.jpg', frame)
+    src = cv2.imread('video/images/frame.jpg')
+    image = cv2.rotate(src, cv2.cv2.ROTATE_90_CLOCKWISE)
+    cv2.imwrite('video/images/frame.jpg', image)
+    text = rekognizer.detect_words('video/images/frame.jpg')
+    # Read one sentence at a time - nah
+    rekognizer.send_text_to_firestore(text)
+
+frames = get_frames(1)
 iterate_frames(frames)
+
