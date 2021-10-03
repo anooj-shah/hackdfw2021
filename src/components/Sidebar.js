@@ -41,12 +41,32 @@ export default function Sidebar() {
                             </li>
                             <li className="rounded-lg mb-2">
                                 <NavLink
-                                    to="/settings"
+                                    to="/review"
                                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                                     activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                                 >
-                                    <Icon name="settings" size="2xl" />
-                                    Settings
+                                    <Icon name="quiz" size="2xl" />
+                                    Review
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to={{pathname: "https://devpost.com/software/convo-2407nm"}} target="_blank"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="cloud_done" size="2xl" />
+                                    Devpost
+                                </NavLink>
+                            </li>
+                            <li className="rounded-lg mb-2">
+                                <NavLink
+                                    to={{pathname: "https://github.com/anooj-shah/hackdfw2021"}} target="_blank"
+                                    className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="code" size="2xl" />
+                                    GitHub
                                 </NavLink>
                             </li>
                         </ul>

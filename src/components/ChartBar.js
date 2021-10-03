@@ -104,7 +104,7 @@ export default function ChartBar(props) {
                 <h6 className="uppercase text-gray-200 text-xs font-medium">
                     Overview
                 </h6>
-                <h2 className="text-white text-2xl">Review Success Rate Daily</h2>
+                <h2 className="text-white text-2xl">Review Rate Daily</h2>
             </CardHeader>
             <CardBody>
                 <div className="relative h-96">

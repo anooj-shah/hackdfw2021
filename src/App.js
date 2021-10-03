@@ -1,6 +1,7 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Sidebar from 'components/Sidebar';
 import Dashboard from 'pages/Dashboard';
+import Review from 'pages/Review';
 
 import firebase from 'firebase/compat/app';
 
@@ -17,6 +18,7 @@ function App() {
             <div className="md:ml-64">
                 <Switch>
                     <Route exact path="/" component={Dashboard} />
+                    <Route exact path="/review" component={Review} />
                     <Redirect from="*" to="/" />
                 </Switch>
             </div>
