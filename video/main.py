@@ -41,7 +41,8 @@ def addWordsToPrevOrg(text, textSplit):
   print('ohboy', prevWords, textSplit)
   for word in textSplit:
     prevWords.add(word)
-    
+
+  rekognizer.update_num_words_read(len(textSplit))
   rekognizer.send_text_to_firestore(text)
   rekognizer.speak_words(text)
 
