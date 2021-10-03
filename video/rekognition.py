@@ -70,7 +70,9 @@ class Rekognizer(object):
         text += words['DetectedText'] + ' '
     
       print(text)
-      self.engine.say(text)
-      self.engine.runAndWait()
       global_text = text
     return global_text
+
+  def speak_words(self, text):
+    self.engine.say(text)
+    self.engine.runAndWait()
