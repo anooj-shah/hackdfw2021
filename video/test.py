@@ -1,15 +1,3 @@
-# try:
-#     from PIL import Image
-# except ImportError:
-#     import Image
-# import numpy
-
-# def detectColor(img, hsv):
-#   imgHSV = 
-
-# path = 'video/images/frame.jpg'
-# img = cv2.imread(path)
-
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -22,7 +10,7 @@ def send_data(doc_id, data):
   doc_ref.set(data)
 
 
-doc_id = 'urmom'
+doc_id = '10032021'
 data = {
   "num_words_read": 10,
   "read_ready": 5,
