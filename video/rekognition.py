@@ -47,6 +47,11 @@ class Rekognizer(object):
       'text': text
     })
 
+  def get_previous_text_from_firestore(self, session_id="iGYw0d7lDKzoHzY2H3AL"):
+    doc = db.collection('sessions').document(session_id).get()
+    data = doc.to_dict()
+    previous_text = data['previous_text']
+    return previous_text
 
   def detect_words(self, photo_path):
     photo = photo_path

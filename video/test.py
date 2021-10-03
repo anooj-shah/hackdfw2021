@@ -9,7 +9,6 @@ def send_data(doc_id, data):
   doc_ref = db.collection('words').document(doc_id)
   doc_ref.set(data)
 
-
 doc_id = '10032021'
 data = {
   "num_words_read": 10,

@@ -12,7 +12,7 @@ rekognizer = Rekognizer()
 
 # run rekognizer.detect_words('photo/path/photo.jpg')
 
-def get_frames(num_frames=1):
+def get_frames(num_frames=1000):
   frames = []
 
   for i in range (num_frames):
@@ -38,6 +38,6 @@ def iterate_frames(frames):
     # Read one sentence at a time - nah
     rekognizer.send_text_to_firestore(text)
 
+
 frames = get_frames(1)
 iterate_frames(frames)
-
