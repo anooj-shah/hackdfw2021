@@ -14,3 +14,11 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import '@material-tailwind/react/tailwind.css';
+
+.quiz-centered {
+  position: fixed;
+  top: 50%;
+  left: 58%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}

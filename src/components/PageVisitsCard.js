@@ -5,13 +5,19 @@ import Button from '@material-tailwind/react/Button';
 import { firestore } from 'components/firebaseContext';
 import { useDocumentData, useCollectionData } from 'react-firebase-hooks/firestore';
 import { useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 
 export default function PageVisitsCard() {
+    const history = useHistory();
 
     const collectionRef = firestore.collection('words');
     const query = collectionRef.orderBy('date', 'desc');
 
-    const [collection, load, err] = useCollectionData(query)
+    const [collection, load, err] = useCollectionData(query, {idField: 'id', refField: 'ref'})
+
+    const handleRoute = () =>{ 
+        history.push("/review");
+      }
 
     return (
         <Card>
@@ -23,6 +29,7 @@ export default function PageVisitsCard() {
                         buttonType="link"
                         size="lg"
                         style={{ padding: 0 }}
+                        onClick={handleRoute}
                     >
                         Begin Review
                     </Button>
@@ -53,7 +60,7 @@ export default function PageVisitsCard() {
                         <tbody>
                             {
                                 (collection && collection.length !== 0) ? collection.map((c) => 
-                                {
+                                {   
                                     let displayDate = new Date(c.date.toDate()).toLocaleDateString('en-us')
 
                                     return (                                
@@ -64,7 +71,7 @@ export default function PageVisitsCard() {
                                         <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                             {c.definition}
                                         </td>
-                                        <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
+                                        <td onClick={() => {c.ref.update({num_correct: c.num_correct + 1})}} className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                                             {c.num_correct}
                                         </td>
                                         <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
